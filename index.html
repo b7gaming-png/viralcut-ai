@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ViralCut AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#090d18;color:white;
+ font-family:Arial,sans-serif;padding:20px;
+}
+header{text-align:center;padding:25px 0}
+h1{color:#9478ff;font-size:32px}
+p{color:#aab2c5}
+.card{
+ background:#151d30;padding:20px;
+ border-radius:16px;margin:18px 0;
+}
+input{
+ width:100%;padding:15px;margin:10px 0;
+ border:1px solid #39445d;border-radius:10px;
+ background:#0d1424;color:white;
+}
+button{
+ width:100%;padding:15px;border:0;
+ border-radius:10px;background:#7657ff;
+ color:white;font-size:16px;font-weight:bold;
+}
+button:disabled{opacity:.5}
+#preview{width:100%;margin-top:12px;display:none}
+#status{color:#5be0ae;text-align:center}
+</style>
+</head>
+<body>
+<header>
+<h1>✂ VIRALCUT AI</h1>
+<p>Turn Long Videos Into Amazing Shorts</p>
+</header>
+
+<div class="card">
+<h3>📁 Upload Your Video</h3>
+<input type="file" id="video" accept="video/*">
+<video id="preview" controls></video>
+</div>
+
+<div class="card">
+<h3>🔗 YouTube Video Link</h3>
+<input id="url" type="url"
+placeholder="Paste your YouTube URL">
+</div>
+
+<div class="card">
+<h3>⚙ Clip Settings</h3>
+<select id="duration" style="width:100%;padding:14px">
+<option value="30">30 Seconds</option>
+<option value="45" selected>45 Seconds</option>
+<option value="60">60 Seconds</option>
+</select>
+</div>
+
+<button id="generate">✨ GENERATE VIRAL CLIPS</button>
+<p id="status">Ready to create your clips!</p>
+
+<script>
+const video=document.getElementById('video');
+const preview=document.getElementById('preview');
+video.onchange=()=>{
+ const file=video.files[0];
+ if(file){
+ preview.src=URL.createObjectURL(file);
+ preview.style.display='block';
+ }
+};
+document.getElementById('generate').onclick=()=>{
+ const file=video.files[0];
+ const url=document.getElementById('url').value.trim();
+ if(!file && !url){
+ alert('Please upload a video or enter a link!');
+ return;
+ }
+ alert('Your video is selected! AI processing backend will be connected in the next step.');
+};
+</script>
+</body>
+</html>
